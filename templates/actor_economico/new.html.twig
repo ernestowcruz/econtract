@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ActorEconomico{% endblock %}
+
+{% block body %}
+    <h1>Create new ActorEconomico</h1>
+
+    {{ include('actor_economico/_form.html.twig') }}
+
+    <a href="{{ path('actor_economico_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestión de la contratación empresarial{% endblock %}
+
+{% block body %}
+			<section class="page-header page-header-xs dark">
+				<div class="container">
+
+					<h1>RESULTADOS DE LA BÚSQUEDA</h1>
+
+					<!-- breadcrumbs -->
+					<ol class="breadcrumb">
+						<li><a href="#">Home</a></li>
+						<li><a href="#">Pages</a></li>
+						<li class="active">Search Result</li>
+					</ol><!-- /breadcrumbs -->
+
+				</div>
+			</section>
+			<!-- /PAGE HEADER -->
+
+
+			<!-- -->
+			<section class="padding-xs alternate">
+				<div class="container">
+
+					<!-- SEARCH -->
+					<form method="get" action="{{ path('actor_economico_index',{forma:'all'}) }}" class="clearfix well well-sm search-big nomargin">
+						<div class="input-group">
+
+							<div class="input-group-btn">
+								<button type="button" class="btn btn-default input-lg dropdown-toggle noborder-right" data-toggle="dropdown">
+									Todas las formas organizativas <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li class="active">
+										<a href="{{ path('actor_economico_index',{forma:'all'}) }}"><i class="fa fa-check"></i>Todas las formas organizativas</a>
+									</li>
+									<li class="divider"></li>
+									{% for forma in formas %}
+									<li>
+										<a href="{{ path('actor_economico_index',{forma:forma.forma}) }}">{{ forma.forma }}</a>
+									</li>
+
+									{% else %}
+										<li colspan="8">no records found</li>
+									{% endfor %}
+								</ul>
+							</div>
+
+							<input name="k" class="form-control input-lg" type="text" placeholder="Buscar...">
+							<div class="input-group-btn">
+								<button type="submit" class="btn btn-default input-lg noborder-left">
+									<i class="fa fa-search fa-lg nopadding"></i>
+								</button>
+							</div>
+						</div>
+
+					</form>
+					<!-- /SEARCH -->
+					
+					<h6 class="nomargin text-muted size-11"> 
+						{{ actor_economicos.Count }} registros encontrados <span>(0.45 seconds)</span>
+					</h6>
+
+				</div>
+			</section>
+			<!-- / -->
+
+
+			<!-- -->
+			<section>
+				<div class="container">
+
+					<div class="row">
+						
+						<!-- RIGHT -->
+						<div class="col-md-12 col-sm-12">
+							{% for actor_economico in actor_economicos %}
+								<div class="clearfix search-result"><!-- item -->
+									<h4 class="margin-bottom-0"><a href="{{ path('empresa_solicitud',{id:actor_economico.id}) }}">{{ actor_economico.nombre }}</a></h4>
+									<small class="text-success">Forma organizativa: {{ actor_economico.forma }}/</small>
+									<p>{{ actor_economico.descripcion }}</p>
+								</div>
+							{% endfor %}
+
+							<!-- PAGINATION -->
+
+							<div class="navigation" >
+								{{ knp_pagination_render(actor_economicos)}}
+							</div>
+							<div class="text-center margin-top-20">
+								<ul class="pagination">
+									<li class="disabled"><a href="#">Previous</a></li>
+
+									<li><a href="#">Next</a></li>
+								</ul>
+							</div>
+							<!-- /PAGINATION -->
+
+						</div>
+
+
+					</div>
+
+					
+				</div>
+			</section>
+			<!-- / -->
+
+{% endblock %}
+

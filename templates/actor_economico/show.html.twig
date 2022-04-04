@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ActorEconomico{% endblock %}
+
+{% block body %}
+    <h1>ActorEconomico</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ actor_economico.id }}</td>
+            </tr>
+            <tr>
+                <th>Codigo</th>
+                <td>{{ actor_economico.codigo }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ actor_economico.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Direccion</th>
+                <td>{{ actor_economico.direccion }}</td>
+            </tr>
+            <tr>
+                <th>Siglas</th>
+                <td>{{ actor_economico.siglas }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ actor_economico.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Forma</th>
+                <td>{{ actor_economico.forma }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('actor_economico_index') }}">back to list</a>
+
+    <a href="{{ path('actor_economico_edit', {'id': actor_economico.id}) }}">edit</a>
+
+    {{ include('actor_economico/_delete_form.html.twig') }}
+{% endblock %}

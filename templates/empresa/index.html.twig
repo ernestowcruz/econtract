@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Empresa index{% endblock %}
+
+{% block body %}
+    <h1>Empresa index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Reu</th>
+                <th>Telefono</th>
+                <th>Correo</th>
+                <th>Web</th>
+                <th>Tipo</th>
+                <th>Nit</th>
+                <th>Representante</th>
+                <th>Ci</th>
+                <th>Estado</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for empresa in empresas %}
+            <tr>
+                <td>{{ empresa.id }}</td>
+                <td>{{ empresa.nombre }}</td>
+                <td>{{ empresa.reu }}</td>
+                <td>{{ empresa.telefono }}</td>
+                <td>{{ empresa.correo }}</td>
+                <td>{{ empresa.web }}</td>
+                <td>{{ empresa.tipo }}</td>
+                <td>{{ empresa.nit }}</td>
+                <td>{{ empresa.representante }}</td>
+                <td>{{ empresa.ci }}</td>
+                <td>{{ empresa.estado }}</td>
+                <td>
+                    <a href="{{ path('empresa_show', {'id': empresa.id}) }}">show</a>
+                    <a href="{{ path('empresa_edit', {'id': empresa.id}) }}">edit</a>
+                    <a href="{{ path('empresa_aprobar_solicitud', {'id': empresa.id}) }}"><i class="ico-append fa fa-edit"></i></a>
+                    <a href="{{ path('empresa_reenviar_solicitud', {'id': empresa.id}) }}"><i class="ico-append fa fa-repeat"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('empresa_new') }}">Create new</a>
+{% endblock %}

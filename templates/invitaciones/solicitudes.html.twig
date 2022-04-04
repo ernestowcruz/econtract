@@ -1,0 +1,72 @@
+{% extends 'base-contratacion.html.twig' %}
+
+{% block title %}Gestión de la contratación empresarial{% endblock %}
+
+{% block body %}
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-sm-6">
+
+
+					<!-- SEARCH -->
+					<form method="post" action="{{ path('invitaciones_internas_new') }}" class="nomargin sky-form boxed">
+						<input type="hidden" name="_method" value="POST">
+						<input type="hidden" name="_token" value="{{ csrf_token('invitacion' ~ app.user.empresa.link) }}">
+						<header>
+							<i class="fa fa-comment"></i> Invitar usuarios
+						</header>
+						<fieldset class="nomargin">
+							<label class="input margin-bottom-10">
+								<i class="ico-append fa fa-envelope"></i>
+								<input placeholder="Correo electrónico *" required type="email" value="" class="form-control"
+									   id="invitaciones_correo" name="invitaciones[correo]" maxlength="255" >
+							</label>
+							<label class="input margin-bottom-10">
+								<i class="ico-append fa fa-user"></i>
+								<input type="text" placeholder="Nombre y apellidos *" required value="" class="form-control"
+									   id="invitaciones_nombre" name="invitaciones[nombre]" maxlength="255" >
+							</label>
+						</fieldset>
+						<div class="row margin-bottom-20">
+							<div class="col-md-12">
+								<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Enviar invitación</button>
+							</div>
+						</div>
+					</form>
+
+				</div>
+
+				<div class="col-md-6 col-sm-6">
+					<div class="box-inner">
+						<h3><a class="pull-right size-11 text-warning" href="#">VIEW ALL</a>
+							INVITACIONES
+						</h3>
+						<div class="height-250 slimscroll" data-always-visible="true" data-size="5px" data-position="right" data-opacity="0.4" disable-body-scroll="true">
+							{% for invitado in invitaciones %}
+							<div class="clearfix margin-bottom-20"><!-- discussion item -->
+								<span class="label label-success label-square pull-left">
+													<i class="fa fa-user"></i>
+												</span>
+								<h4 class="size-15 nomargin noborder nopadding bold"><a href="{{ path('home') }}">{{ invitado.nombre }}</a></h4>
+
+								<span class="size-13 text-muted">
+									<span class="text-success size-11">1 month ago</span>
+													{{ invitado.correo }}
+
+									<a href="{{ path('invitaciones_internas_reenviar',{id:invitado.id}) }}" class="text-success "> reenviar</a>
+									<a href="{{ path('invitaciones_internas_delete',{id:invitado.id}) }}" class="text-danger pull-right"> eliminar</a></li>
+
+												</span>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!-- / -->
+		</div>
+	</section>
+{% endblock %}
+

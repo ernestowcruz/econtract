@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ActorEconomico index{% endblock %}
+
+{% block body %}
+    <h1>ActorEconomico index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Siglas</th>
+                <th>Descripcion</th>
+                <th>Forma</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for actor_economico in actor_economicos %}
+            <tr>
+                <td>{{ actor_economico.id }}</td>
+                <td>{{ actor_economico.codigo }}</td>
+                <td>{{ actor_economico.nombre }}</td>
+                <td>{{ actor_economico.direccion }}</td>
+                <td>{{ actor_economico.siglas }}</td>
+                <td>{{ actor_economico.descripcion }}</td>
+                <td>{{ actor_economico.forma }}</td>
+                <td>
+                    <a href="{{ path('actor_economico_show', {'id': actor_economico.id}) }}">show</a>
+                    <a href="{{ path('actor_economico_edit', {'id': actor_economico.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('actor_economico_new') }}">Create new</a>
+{% endblock %}

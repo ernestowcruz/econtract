@@ -1,0 +1,58 @@
+*Instalacion Composer
+composer create-project symfony/skeleton:"^5.4" my_project_directory
+*Opciona con le sig comando es para WEB COMPLETA
+composer require webapp  
+*Montar servidor para PHP en la Raiz
+php -S 127.0.0.1:8000 -t public
+
+*Bundles Tercero Importantes
+composer require "symfony/rate-limiter",        					  -> CONTROL DE PETICIONES
+composer require "symfony/uid",										  -> PERMITE STRING UNICOS
+composer require "phpmailer/phpmailer",					              -> ENVIAR EMAIL CON PHP
+composer require "nelmio/cors-bundle",								  -> USAR AJAX EN LAS API
+composer require "knplabs/knp-paginator-bundle",					  -> PAGINADOR Y FILTRO
+composer require "lexik/jwt-authentication-bundle",					  -> TOKEN API JWT
+composer require "symfony/uid",										  -> PERMITE STRING UNICOS
+composer require nelmio/api-doc-bundle								  -> CREAR DOC APIS
+
+composer require "jmose/command-scheduler-bundle",    			      -> TAREA PROGRAMADAS
+
+*Gestion de Usuarios
+php bin/console make:user										      -> ENTIDAD USUARIO
+composer require symfonycasts/verify-email-bundle
+php bin/console make:registration-form								  -> REGISTRO FORM
+php bin/console make:crud User
+
+php bin/console make:controller Login								  -> LOGIN FORM
+php bin/console make:controller --no-template ApiLogin				  -> LOGIN API
+
+*Comandos Basicos
+php bin/console about												
+php bin/console make:controller NOMBRE
+php bin/console security:hash-password								  -> CREAR PASSWORD POR CONSOLA
+php bin/console app:create-user										  -> EJECUTAR COMANDOS
+
+*Comandas Base Dato
+mysql --version
+php bin/console make:migration
+php bin/console doctrine:migrations:migrate
+php bin/console doctrine:migrations:sync-metadata-storage
+php bin/console doctrine:schema:update --force 						  -> ACTUALIZAR COMANDO
+
+//Ver Version Symfony
+php bin/console about
+//Ejecutar tarea Programadas con el BUNDLE
+php bin/console scheduler:execute
+LINUX -> /usr/bin/php -q /www/wwwroot/spaceheroes.world/staking/bin/console scheduler:execute
+//borrar la cache:
+php bin/console cache:clear --env=dev
+php bin/console cache:clear --env=prod
+//Base datos
+php bin/console doctrine:database:create
+php bin/console doctrine:schema:create
+php bin/console doctrine:schema:update --force
+php bin/console doctrine:schema:drop --force
+//Cargar los DATA FIXTURE
+php bin/console doctrine:fixtures:load
+//Actualizar los bundles en el composer.json
+php composer.phar  dump-autoload

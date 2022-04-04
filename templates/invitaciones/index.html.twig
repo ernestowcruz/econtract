@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Invitaciones index{% endblock %}
+
+{% block body %}
+    <h1>Invitaciones index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Link</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for invitacione in invitaciones %}
+            <tr>
+                <td>{{ invitacione.id }}</td>
+                <td>{{ invitacione.nombre }}</td>
+                <td>{{ invitacione.correo }}</td>
+                <td>{{ invitacione.link }}</td>
+                <td>
+                    <a href="{{ path('invitaciones_show', {'id': invitacione.id}) }}">show</a>
+                    <a href="{{ path('invitaciones_edit', {'id': invitacione.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('invitaciones_new') }}">Create new</a>
+{% endblock %}

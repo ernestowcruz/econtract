@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+
+    <section class="padding-xlg">
+        <div class="container">
+
+            <h2>Lo sentimos, <strong>Usted no tiene permisos para acceder a este recurso!</strong></h2>
+            <a class="size-20 font-lato" href="{{ path("home") }}">
+                <i class="glyphicon glyphicon-menu-left margin-right-10 size-16"></i> regresar a la página principal de Zonanthus ahora!</a>
+
+        </div>
+    </section>
+
+{% endblock %}

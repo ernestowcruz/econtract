@@ -1,0 +1,98 @@
+{% extends 'base-contratacion.html.twig' %}
+
+{% block title %}Empresa index{% endblock %}
+
+{% block body %}
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
+					<div class="alert alert-mini alert-danger margin-bottom-30">
+						<h4 class="margin-bottom-0">{{ actor.nombre }}</h4>
+						<small class="text-success">Forma organizativa: {{ actor.forma }}/</small>
+						<p>{{ actor.descripcion }}</p>
+					</div><!-- /ALERT -->
+					<form class="nomargin sky-form boxed" action="{{ path('empresa_solicitud',{id:actor.id}) }}" method="post">
+						<input type="hidden" name="_method" value="POST">
+						<input type="hidden" name="_token" value="{{ csrf_token('empresa_solicitud') }}">
+
+						<header>
+							<i class="fa fa-users"></i> Datos de la división
+						</header>
+
+						<fieldset class="nomargin">
+							<label class="input">
+								<i class="ico-append fa fa-sitemap"></i>
+								<input type="text" placeholder="Sitio web" id="empresa_web" name="empresa[web]" maxlength="255">
+								<b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+							</label>
+
+							<label class="input">
+								<i class="ico-append fa fa-mobile"></i>
+								<input type="text" placeholder="Teléfono" id="empresa_telefono" name="empresa[telefono]" maxlength="20" required="required">
+								<b class="tooltip tooltip-bottom-right">Only latin characters and numbers</b>
+							</label>
+
+							<label class="input">
+								<i class="ico-append fa fa-envelope"></i>
+								<input type="text" placeholder="Dirección de correo" id="empresa_correo" name="empresa[correo]" maxlength="125" required="required">
+								<b class="tooltip tooltip-bottom-right">Only latin characters and numbers</b>
+							</label>
+
+							<div class="row">
+								<div class="col-md-6">
+									<label class="input">
+										<input type="text" placeholder="Código REUP" id="empresa_reu" name="empresa[reu]" maxlength="15" required="required">
+									</label>
+								</div>
+								<div class="col col-md-6">
+									<label class="input">
+										<input type="text" placeholder="Código NIT" id="empresa_nit" name="empresa[nit]" maxlength="15">
+									</label>
+								</div>
+							</div>
+						</fieldset>
+
+						<header>
+							<i class="fa fa-user"></i> Datos del Representante
+						</header>
+						<fieldset class="nomargin">
+							<label class="input">
+								<i class="ico-append fa fa-user"></i>
+								<input type="text" placeholder="Nombre del representante" id="empresa_representante" name="empresa[representante]" maxlength="50" required="required">
+								<b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+							</label>
+
+							<label class="input">
+								<i class="ico-append fa fa-credit-card"></i>
+								<input type="text" placeholder="Carnet de identidad" id="empresa_ci" name="empresa[ci]" maxlength="11" required="required">
+								<b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+							</label>
+
+							<label class="input">
+								<i class="ico-append fa fa-mobile"></i>
+								<input type="text" placeholder="Movil" id="empresa_representanto_movil" name="empresa[representanto_movil]" maxlength="11">
+								<b class="tooltip tooltip-bottom-right">Only latin characters and numbers</b>
+							</label>
+
+							<label class="input">
+								<i class="ico-append fa fa-envelope"></i>
+								<input type="text" placeholder="Dirección de correo" id="empresa_representanto_email" name="empresa[representanto_email]" maxlength="11" >
+								<b class="tooltip tooltip-bottom-right">Only latin characters and numbers</b>
+							</label>
+
+
+						</fieldset>
+
+						<div class="row margin-bottom-20">
+							<div class="col-md-12">
+								<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> REGISTRAR</button>
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

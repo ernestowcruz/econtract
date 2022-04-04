@@ -1,0 +1,39 @@
+{% extends 'base-contratacion.html.twig' %}
+
+{% block title %}Empresa index{% endblock %}
+
+{% block body %}
+
+
+    <section>
+
+        <div class="container">
+            <a href="{{ path('division_nueva',{link:app.user.empresa.link}) }}">Create new</a>
+            {% for user in divisiones %}
+                <div class="row"><!-- item -->
+                    <div class="col-md-2"><!-- company logo -->
+                        <img width="50" src="{{ asset('uploads/perfil/'~user.picture) }}" alt="sin foto" />
+                    </div>
+                    <div class="col-md-8"><!-- company detail -->
+                        <h5 class="margin-bottom-10">{{ user.Nombre_apellidos }}</h5>
+                        <h4>email: <span >{{ user.email }}</span></h4>
+                    </div>
+                    <div class="col-md-2"><!-- company detail -->
+                        <a class="btn btn-info btn-xs" href="{{ path('user_edit', {'id': user.id}) }}"><i class="fa fa-edit"></i> Edit </a>
+                    </div>
+                </div><!-- /item -->
+                <hr />
+
+            {% else %}
+                <div class="row"><!-- item -->
+                    <h4 class="margin-bottom-10"> No hay registros para mostrar</h4>
+                </div>
+            {% endfor %}
+
+        </div>
+    </section>
+
+
+
+
+{% endblock %}
